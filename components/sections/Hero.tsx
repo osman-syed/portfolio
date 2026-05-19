@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 import { fadeInUp, staggerContainer, viewportOptions } from "@/lib/animations";
 
 export default function Hero() {
@@ -30,8 +31,14 @@ export default function Hero() {
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
-        className="relative z-10 max-w-4xl"
+        className="relative z-10 w-full grid grid-cols-1 lg:grid-cols-[1fr_440px] gap-8 lg:gap-16 items-center"
       >
+        <div>
+        <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 mb-5 px-3 py-1.5 rounded-full border border-neutral-200 bg-paper">
+          <span className="w-1.5 h-1.5 rounded-full bg-coral animate-pulse" />
+          <span className="text-[10px] tracking-[0.15em] uppercase text-neutral-500 font-medium">Building YottaBuilder</span>
+        </motion.div>
+
         <motion.p
           variants={fadeInUp}
           className="text-xs tracking-[0.35em] uppercase text-neutral-400 mb-4"
@@ -41,7 +48,7 @@ export default function Hero() {
 
         <motion.h1
           variants={fadeInUp}
-          className="text-6xl md:text-8xl font-black tracking-tightest text-ink leading-[1.0] mb-2"
+          className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tightest text-ink leading-[1.0] mb-2 whitespace-nowrap"
         >
           Syed Osman
         </motion.h1>
@@ -77,6 +84,50 @@ export default function Hero() {
           >
             Let&apos;s talk →
           </a>
+        </motion.div>
+
+        <motion.div
+          variants={fadeInUp}
+          className="flex gap-8 pt-6 mt-6 border-t border-neutral-100"
+        >
+          <div>
+            <div className="text-2xl font-black text-ink leading-none mb-1">3.5</div>
+            <div className="text-[10px] tracking-[0.15em] uppercase text-neutral-400">Yrs Exp</div>
+          </div>
+          <div>
+            <div className="text-2xl font-black text-ink leading-none mb-1">3</div>
+            <div className="text-[10px] tracking-[0.15em] uppercase text-neutral-400">Products</div>
+          </div>
+          <div>
+            <div className="text-2xl font-black text-coral leading-none mb-1">AI</div>
+            <div className="text-[10px] tracking-[0.15em] uppercase text-neutral-400">Native</div>
+          </div>
+          <div>
+            <div className="text-2xl font-black text-teal leading-none mb-1">∞</div>
+            <div className="text-[10px] tracking-[0.15em] uppercase text-neutral-400">Curiosity</div>
+          </div>
+        </motion.div>
+        </div>
+
+        {/* Profile photo */}
+        <motion.div
+          variants={fadeInUp}
+          className="flex justify-center lg:justify-end"
+        >
+          <div className="relative w-[320px] h-[320px] lg:w-[440px] lg:h-[440px]">
+            <div className="absolute -bottom-4 -right-4 w-20 h-20 rounded-full bg-coral/15 pointer-events-none" />
+            <div className="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-teal/20 pointer-events-none" />
+            <div className="w-full h-full rounded-full overflow-hidden ring-1 ring-neutral-200 bg-paper">
+              <Image
+                src="/profile.png"
+                alt="Syed Osman"
+                width={420}
+                height={420}
+                className="object-cover object-top w-full h-full scale-110"
+                priority
+              />
+            </div>
+          </div>
         </motion.div>
       </motion.div>
 
