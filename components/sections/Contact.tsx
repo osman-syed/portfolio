@@ -27,7 +27,7 @@ export default function Contact() {
           variants={fadeInUp}
           className="text-xs tracking-[0.3em] uppercase text-neutral-600 mb-6"
         >
-          07 — Contact
+          08 — Contact
         </motion.p>
 
         <motion.h2 variants={fadeInUp} className="text-5xl md:text-6xl font-black tracking-tightest text-white mb-4">

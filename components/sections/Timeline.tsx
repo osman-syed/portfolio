@@ -14,7 +14,7 @@ export default function Timeline() {
   const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section id="timeline" className="px-8 md:px-16 lg:px-24 py-24 bg-white">
+    <section id="timeline" className="px-8 md:px-16 lg:px-24 py-24 bg-paper">
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -26,7 +26,7 @@ export default function Timeline() {
           variants={fadeInUp}
           className="text-xs tracking-[0.3em] uppercase text-neutral-400 mb-4"
         >
-          06 — Timeline
+          07 — Timeline
         </motion.p>
         <motion.h2
           variants={fadeInUp}

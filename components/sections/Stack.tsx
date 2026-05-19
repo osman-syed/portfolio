@@ -13,7 +13,7 @@ const categoryLabels: Record<string, string> = {
 
 export default function Stack() {
   return (
-    <section id="stack" className="px-8 md:px-16 lg:px-24 py-24 bg-paper">
+    <section id="stack" className="px-8 md:px-16 lg:px-24 py-24 bg-white">
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -25,7 +25,7 @@ export default function Stack() {
           variants={fadeInUp}
           className="text-xs tracking-[0.3em] uppercase text-neutral-400 mb-4"
         >
-          05 — Stack
+          06 — Stack
         </motion.p>
         <motion.h2
           variants={fadeInUp}

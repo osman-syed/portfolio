@@ -135,3 +135,28 @@ export const timelineEntries: TimelineEntry[] = [
     dotColor: "#888888",
   },
 ];
+
+export type BlogPost = {
+  id: string;
+  title: string;
+  excerpt: string;
+  date: string;          // ISO format "YYYY-MM-DD"
+  readMinutes: number;
+  tags: string[];
+  url: string;
+};
+
+export const blogPosts: BlogPost[] = [
+  {
+    id: "stripe-b2b-saas",
+    title: "From Zero to Production: Integrating Stripe Payments in a B2B SaaS Platform",
+    excerpt:
+      "Implementing a payment system using Stripe Checkout — architectural considerations, webhook handling, and best practices for secure, production-ready payment processing.",
+    date: "2026-03-09",
+    readMinutes: 5,
+    tags: ["Stripe", "SaaS", "FastAPI", "AWS"],
+    url: "https://medium.com/@osmansyed.developer/from-zero-to-production-integrating-stripe-payments-in-a-b2b-saas-platform-10c2b4ceb851",
+  },
+];
+
+export const MEDIUM_PROFILE_URL = "https://medium.com/@osmansyed.developer";
