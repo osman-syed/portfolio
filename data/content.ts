@@ -148,6 +148,16 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: "nextjs-portfolio-without-nextjs",
+    title: "I Built a Production Next.js Portfolio Without Knowing Next.js — Here's Exactly How",
+    excerpt:
+      "How I used Claude Code's subagent-driven development workflow to ship a full Next.js portfolio in one session — without writing a line of Next.js. What it revealed about the future of software development.",
+    date: "2026-05-20",
+    readMinutes: 5,
+    tags: ["AI", "Claude Code", "Next.js", "LLM"],
+    url: "https://medium.com/@osmansyed.developer/i-built-a-production-next-js-portfolio-without-knowing-next-js-heres-exactly-how-75239bad9de7",
+  },
+  {
     id: "stripe-b2b-saas",
     title: "From Zero to Production: Integrating Stripe Payments in a B2B SaaS Platform",
     excerpt:
