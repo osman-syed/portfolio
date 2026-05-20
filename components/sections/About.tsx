@@ -2,17 +2,16 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { fadeInUp, staggerContainer, viewportOptions } from "@/lib/animations";
 
-function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
+function CountUp({ target }: { target: number }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "-60px" });
 
   useEffect(() => {
     if (!inView) return;
     let start = 0;
-    const duration = 1200;
+    const duration = 1400;
     const step = 16;
     const increment = (target / duration) * step;
     const timer = setInterval(() => {
@@ -28,8 +27,8 @@ function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
   }, [inView, target]);
 
   return (
-    <div ref={ref} className="text-3xl font-black text-coral leading-none">
-      {count}{suffix}
+    <div ref={ref}>
+      {count}
     </div>
   );
 }
@@ -38,76 +37,95 @@ export default function About() {
   return (
     <section
       id="about"
-      className="px-8 md:px-16 lg:px-24 py-24 bg-paper"
+      className="px-6 md:px-12 lg:px-20 py-28"
+      style={{ backgroundColor: "var(--color-paper-2)" }}
     >
-      <motion.div
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOptions}
-        className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center"
-      >
-        {/* Left: bio */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-16 lg:gap-24 items-start">
+
+        {/* Left — bio */}
         <div>
-          <motion.p
-            variants={fadeInUp}
-            className="text-xs tracking-[0.3em] uppercase text-neutral-400 mb-4"
+          <h2
+            className="font-[family-name:var(--font-display)] font-semibold italic leading-[1.08] tracking-[-0.01em] mb-8"
+            style={{ fontSize: "var(--text-display-s)", color: "var(--color-ink)" }}
           >
-            02 — About
-          </motion.p>
-          <motion.h2
-            variants={fadeInUp}
-            className="text-4xl font-black tracking-tightest text-ink mb-6"
+            Engineer by trade,<br />builder by instinct.
+          </h2>
+          <div
+            className="font-[family-name:var(--font-body)] leading-relaxed space-y-4"
+            style={{ fontSize: "var(--text-base)", color: "var(--color-muted-hm)", maxWidth: "55ch" }}
           >
-            Who I am.
-          </motion.h2>
-          <motion.p variants={fadeInUp} className="text-neutral-500 text-sm leading-relaxed mb-4">
-            Started Dec 2022 with zero production experience. Three and a half years later — shipped enterprise analytics platforms, AI document automation, and an AI no-code platform that writes its own code.
-          </motion.p>
-          <motion.p variants={fadeInUp} className="text-neutral-500 text-sm leading-relaxed">
-            Based in Hyderabad. Currently going deep on multi-agent systems, RAG, and production LLM pipelines at Yotta Tech Ports.
-          </motion.p>
+            <p>
+              I&apos;ve been at Yotta Tech Ports since December 2022 — starting as a
+              project intern and growing into the engineer building the company&apos;s
+              most ambitious product.
+            </p>
+            <p>
+              My work spans the full stack: React frontends, FastAPI backends,
+              AWS infrastructure, and increasingly the AI layer — multi-agent
+              orchestration, RAG pipelines, knowledge graphs. I care about
+              systems that are both technically sound and genuinely useful.
+            </p>
+            <p>
+              Currently building YottaBuilder: describe your software in plain
+              English, get production code. It&apos;s the hardest thing I&apos;ve worked on.
+            </p>
+          </div>
+
+          <div className="mt-8">
+            <a
+              href="https://medium.com/@osmansyed.developer"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-[family-name:var(--font-body)] font-medium text-[var(--text-sm)]"
+              style={{
+                color: "var(--color-coral)",
+                textDecoration: "underline",
+                textDecorationColor: "var(--color-coral)",
+                textUnderlineOffset: "4px",
+              }}
+            >
+              Read my writing →
+            </a>
+          </div>
         </div>
 
-        {/* Right: stat grid */}
-        <motion.div variants={staggerContainer} className="grid grid-cols-2 gap-4">
-          {/* 3.5 Yrs */}
-          <motion.div
-            variants={fadeInUp}
-            className="bg-white border border-neutral-200 rounded-xl p-5 text-center"
-          >
-            <CountUp target={3.5} />
-            <p className="text-[10px] tracking-[0.2em] uppercase text-neutral-400 mt-1">Yrs Exp</p>
-          </motion.div>
-
-          {/* 3 Products */}
-          <motion.div
-            variants={fadeInUp}
-            className="bg-white border border-neutral-200 rounded-xl p-5 text-center"
-          >
-            <CountUp target={3} />
-            <p className="text-[10px] tracking-[0.2em] uppercase text-neutral-400 mt-1">Products</p>
-          </motion.div>
-
-          {/* AI Native */}
-          <motion.div
-            variants={fadeInUp}
-            className="bg-ink rounded-xl p-5 text-center"
-          >
-            <div className="text-3xl font-black text-coral leading-none">AI</div>
-            <p className="text-[10px] tracking-[0.2em] uppercase text-neutral-500 mt-1">Native</p>
-          </motion.div>
-
-          {/* Curiosity */}
-          <motion.div
-            variants={fadeInUp}
-            className="bg-white border border-neutral-200 rounded-xl p-5 text-center"
-          >
-            <div className="text-3xl font-black text-teal leading-none">∞</div>
-            <p className="text-[10px] tracking-[0.2em] uppercase text-neutral-400 mt-1">Curiosity</p>
-          </motion.div>
-        </motion.div>
-      </motion.div>
+        {/* Right — stats */}
+        <div className="flex flex-col gap-10 pt-2">
+          {[
+            { target: 3.5, label: "Years at Yotta Tech Ports" },
+            { target: 3, label: "Production products shipped" },
+          ].map(({ target, label }) => (
+            <div key={label} style={{ borderTop: "1px solid var(--color-rule)", paddingTop: "var(--space-lg)" }}>
+              <div
+                className="font-[family-name:var(--font-display)] font-semibold italic leading-none mb-2"
+                style={{ fontSize: "var(--text-4xl)", color: "var(--color-coral)", fontVariantNumeric: "tabular-nums" }}
+              >
+                <CountUp target={target} />
+              </div>
+              <div
+                className="font-[family-name:var(--font-mono)] text-[var(--text-xs)] tracking-[0.14em] uppercase"
+                style={{ color: "var(--color-muted-hm)" }}
+              >
+                {label}
+              </div>
+            </div>
+          ))}
+          <div style={{ borderTop: "1px solid var(--color-rule)", paddingTop: "var(--space-lg)" }}>
+            <div
+              className="font-[family-name:var(--font-display)] font-semibold italic leading-none mb-2"
+              style={{ fontSize: "var(--text-4xl)", color: "var(--color-coral)" }}
+            >
+              ∞
+            </div>
+            <div
+              className="font-[family-name:var(--font-mono)] text-[var(--text-xs)] tracking-[0.14em] uppercase"
+              style={{ color: "var(--color-muted-hm)" }}
+            >
+              Curiosity
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

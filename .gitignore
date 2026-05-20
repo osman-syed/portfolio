@@ -42,3 +42,8 @@ next-env.d.ts
 
 # local tooling
 /.superpowers/
+/.agents/
+/.claude/
+/.hallmark/
+/skills-lock.json
+/tokens.css

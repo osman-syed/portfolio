@@ -1,89 +1,108 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { fadeInUp, staggerContainer, scaleIn, viewportOptions } from "@/lib/animations";
-
 const features = [
   { label: "AI Core", value: "Multi-agent orchestration" },
-  { label: "Memory", value: "RAG + Knowledge graph" },
+  { label: "Memory", value: "RAG + knowledge graph" },
   { label: "Infra", value: "AWS Serverless + Bedrock" },
+  { label: "Interface", value: "Natural language → production code" },
 ];
 
 const tags = ["Claude API", "React 19", "Python", "AWS Lambda", "DynamoDB", "Memgraph"];
 
 export default function AIWork() {
   return (
-    <section id="ai-work" className="px-8 md:px-16 lg:px-24 py-24 bg-ink relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute top-[-80px] right-[-80px] w-[400px] h-[400px] rounded-full bg-coral opacity-[0.07] pointer-events-none blur-3xl" />
+    <section
+      id="ai-work"
+      className="px-6 md:px-12 lg:px-20 py-28"
+      style={{ backgroundColor: "var(--color-dark)" }}
+    >
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-16 lg:gap-24 items-start">
 
-      <motion.div
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOptions}
-        className="max-w-5xl mx-auto"
-      >
-        <motion.p
-          variants={fadeInUp}
-          className="text-xs tracking-[0.3em] uppercase text-neutral-600 mb-6"
-        >
-          03 — AI Work
-        </motion.p>
-
-        {/* Badge */}
-        <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 bg-coral/10 border border-coral/30 rounded-full px-4 py-1.5 mb-6">
-          <span className="w-1.5 h-1.5 rounded-full bg-coral shadow-[0_0_6px_#ff6b6b]" />
-          <span className="text-coral text-[10px] tracking-[0.2em] uppercase font-medium">
-            Featured — 3 months deep
-          </span>
-        </motion.div>
-
-        <motion.h2
-          variants={fadeInUp}
-          className="text-5xl md:text-6xl font-black tracking-tightest text-white mb-4"
-        >
-          YottaBuilder
-        </motion.h2>
-
-        <motion.p
-          variants={fadeInUp}
-          className="text-neutral-400 text-sm leading-relaxed max-w-2xl mb-8"
-        >
-          AI-powered no-code platform. Describe your software in natural language — it generates the
-          architecture, DB schema, UI, backend APIs, and test cases. Automatically.
-        </motion.p>
-
-        {/* Feature tiles */}
-        <motion.div
-          variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8"
-        >
-          {features.map((f) => (
-            <motion.div
-              key={f.label}
-              variants={scaleIn}
-              whileHover={{ scale: 1.02, borderColor: "rgba(255,107,107,0.4)" }}
-              className="bg-white/5 border border-white/10 rounded-xl p-5 transition-colors duration-200"
-            >
-              <p className="text-coral text-[10px] tracking-[0.2em] uppercase mb-2">{f.label}</p>
-              <p className="text-white text-sm">{f.value}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Tech tags */}
-        <motion.div variants={fadeInUp} className="flex flex-wrap gap-2">
-          {tags.map((tag) => (
+        {/* Left — headline + description */}
+        <div>
+          <div className="flex items-center gap-3 mb-8">
+            <div
+              className="w-1.5 h-1.5 rounded-full"
+              style={{ backgroundColor: "var(--color-coral)" }}
+            />
             <span
-              key={tag}
-              className="bg-coral/15 text-coral text-xs px-3 py-1.5 rounded"
+              className="font-[family-name:var(--font-mono)] text-[var(--text-xs)] tracking-[0.18em] uppercase"
+              style={{ color: "var(--color-coral)" }}
             >
-              {tag}
+              Featured — Active build
             </span>
+          </div>
+
+          <h2
+            className="font-[family-name:var(--font-display)] font-semibold italic leading-[1.04] tracking-[-0.01em] mb-6"
+            style={{ fontSize: "var(--text-display-s)", color: "var(--color-dark-ink)" }}
+          >
+            YottaBuilder
+          </h2>
+
+          <p
+            className="font-[family-name:var(--font-body)] leading-relaxed mb-10"
+            style={{ fontSize: "var(--text-base)", color: "var(--color-dark-muted)", maxWidth: "48ch" }}
+          >
+            AI-powered no-code platform. Describe your software in natural
+            language — it generates the architecture, database schema, UI,
+            backend APIs, and test cases. Automatically.
+          </p>
+
+          <div className="flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="font-[family-name:var(--font-mono)] text-[var(--text-xs)] px-3 py-1.5 tracking-wide"
+                style={{
+                  color: "var(--color-dark-muted)",
+                  backgroundColor: "var(--color-dark-3)",
+                  border: "1px solid var(--color-dark-rule)",
+                  borderRadius: "var(--radius-sm)",
+                }}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Right — spec table */}
+        <div style={{ borderTop: "1px solid var(--color-dark-rule)" }}>
+          {features.map((f, i) => (
+            <div
+              key={f.label}
+              className="flex justify-between items-baseline py-5"
+              style={{
+                borderBottom: i < features.length - 1 ? "1px solid var(--color-dark-rule)" : "none",
+              }}
+            >
+              <span
+                className="font-[family-name:var(--font-mono)] text-[var(--text-xs)] tracking-[0.14em] uppercase"
+                style={{ color: "var(--color-coral)" }}
+              >
+                {f.label}
+              </span>
+              <span
+                className="font-[family-name:var(--font-body)] font-normal text-[var(--text-sm)] text-right"
+                style={{ color: "var(--color-dark-ink)", maxWidth: "24ch" }}
+              >
+                {f.value}
+              </span>
+            </div>
           ))}
-        </motion.div>
-      </motion.div>
+
+          <div className="pt-10">
+            <div
+              className="font-[family-name:var(--font-display)] italic leading-tight"
+              style={{ fontSize: "var(--text-lg)", color: "var(--color-dark-muted)" }}
+            >
+              "Describe your software.<br />
+              <span style={{ color: "var(--color-dark-ink)" }}>Ship it."</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

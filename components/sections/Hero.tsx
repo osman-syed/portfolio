@@ -1,150 +1,193 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
-import { fadeInUp, staggerContainer, viewportOptions } from "@/lib/animations";
+
+const base = {
+  hidden: { opacity: 0, y: 12 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const ease = [0.16, 1, 0.3, 1] as const;
 
 export default function Hero() {
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const blobY1 = useTransform(scrollYProgress, [0, 1], [0, -80]);
-  const blobY2 = useTransform(scrollYProgress, [0, 1], [0, -50]);
-
   return (
     <section
-      ref={ref}
       id="hero"
-      className="relative min-h-screen flex flex-col justify-center px-8 md:px-16 lg:px-24 pt-24 pb-16 overflow-hidden bg-white"
+      className="min-h-screen flex items-center px-6 md:px-12 lg:px-20 pt-28 pb-20"
+      style={{ backgroundColor: "var(--color-paper)" }}
     >
-      {/* Decorative blobs */}
-      <motion.div
-        style={{ y: blobY1 }}
-        className="absolute top-[-80px] right-[-80px] w-[400px] h-[400px] rounded-full bg-coral opacity-[0.06] pointer-events-none"
-      />
-      <motion.div
-        style={{ y: blobY2 }}
-        className="absolute bottom-[-60px] left-[15%] w-[280px] h-[280px] rounded-full bg-teal opacity-[0.08] pointer-events-none"
-      />
+      <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-20 items-center">
 
-      <motion.div
-        variants={staggerContainer}
-        initial="hidden"
-        animate="visible"
-        className="relative z-10 w-full grid grid-cols-1 lg:grid-cols-[1fr_440px] gap-8 lg:gap-16 items-center"
-      >
+        {/* Left — text */}
         <div>
-        <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 mb-5 px-3 py-1.5 rounded-full border border-neutral-200 bg-paper">
-          <span className="w-1.5 h-1.5 rounded-full bg-coral animate-pulse" />
-          <span className="text-[10px] tracking-[0.15em] uppercase text-neutral-500 font-medium">Building YottaBuilder</span>
-        </motion.div>
-
-        <motion.p
-          variants={fadeInUp}
-          className="text-xs tracking-[0.35em] uppercase text-neutral-400 mb-4"
-        >
-          — Full Stack · AI Engineer
-        </motion.p>
-
-        <motion.h1
-          variants={fadeInUp}
-          className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tightest text-ink leading-[1.0] mb-2 whitespace-nowrap"
-        >
-          Syed Osman
-        </motion.h1>
-
-        <motion.div variants={fadeInUp} className="mb-6">
-          <span className="text-3xl md:text-5xl font-black tracking-tighter text-ink leading-[1.1]">
-            I build software{" "}
-          </span>
-          <span className="text-3xl md:text-5xl font-black tracking-tighter text-coral italic leading-[1.1]">
-            that builds software.
-          </span>
-        </motion.div>
-
-        <motion.p
-          variants={fadeInUp}
-          className="text-sm text-neutral-500 leading-relaxed max-w-md border-l-[3px] border-coral pl-4 mb-8"
-        >
-          Full-stack developer since Dec 2022. Currently building AI-powered
-          platforms that turn ideas into production software — no manual coding
-          required.
-        </motion.p>
-
-        <motion.div variants={fadeInUp} className="flex gap-4 items-center flex-wrap">
-          <a
-            href="#projects"
-            className="bg-ink text-white px-6 py-3 text-xs font-bold tracking-[0.1em] uppercase rounded hover:bg-neutral-800 transition-colors duration-200"
+          <motion.p
+            variants={base} initial="hidden" animate="visible"
+            transition={{ duration: 0.52, ease, delay: 0 }}
+            className="font-[family-name:var(--font-mono)] text-[var(--text-xs)] tracking-[0.18em] uppercase mb-6"
+            style={{ color: "var(--color-muted-hm)" }}
           >
-            View Work ↓
-          </a>
-          <a
-            href="#contact"
-            className="text-ink text-sm font-semibold underline underline-offset-4 hover:text-coral transition-colors duration-200"
-          >
-            Let&apos;s talk →
-          </a>
-        </motion.div>
+            Full-Stack · AI Engineer · Hyderabad
+          </motion.p>
 
-        <motion.div
-          variants={fadeInUp}
-          className="flex gap-8 pt-6 mt-6 border-t border-neutral-100"
-        >
-          <div>
-            <div className="text-2xl font-black text-ink leading-none mb-1">3.5</div>
-            <div className="text-[10px] tracking-[0.15em] uppercase text-neutral-400">Yrs Exp</div>
-          </div>
-          <div>
-            <div className="text-2xl font-black text-ink leading-none mb-1">3</div>
-            <div className="text-[10px] tracking-[0.15em] uppercase text-neutral-400">Products</div>
-          </div>
-          <div>
-            <div className="text-2xl font-black text-coral leading-none mb-1">AI</div>
-            <div className="text-[10px] tracking-[0.15em] uppercase text-neutral-400">Native</div>
-          </div>
-          <div>
-            <div className="text-2xl font-black text-teal leading-none mb-1">∞</div>
-            <div className="text-[10px] tracking-[0.15em] uppercase text-neutral-400">Curiosity</div>
-          </div>
-        </motion.div>
+          <motion.h1
+            variants={base} initial="hidden" animate="visible"
+            transition={{ duration: 0.52, ease, delay: 0.08 }}
+            className="font-[family-name:var(--font-display)] font-semibold italic leading-[1.02] tracking-[-0.01em] mb-2"
+            style={{ fontSize: "var(--text-display)", color: "var(--color-ink)" }}
+          >
+            Syed Osman
+          </motion.h1>
+
+          <motion.div
+            variants={base} initial="hidden" animate="visible"
+            transition={{ duration: 0.52, ease, delay: 0.16 }}
+            className="mb-8"
+          >
+            <span
+              className="font-[family-name:var(--font-body)] font-light leading-[1.2] tracking-[-0.02em]"
+              style={{ fontSize: "var(--text-xl)", color: "var(--color-ink-2)" }}
+            >
+              I build software{" "}
+            </span>
+            <span
+              className="font-[family-name:var(--font-display)] italic font-normal leading-[1.2]"
+              style={{ fontSize: "var(--text-xl)", color: "var(--color-coral)" }}
+            >
+              that builds software.
+            </span>
+          </motion.div>
+
+          <motion.p
+            variants={base} initial="hidden" animate="visible"
+            transition={{ duration: 0.52, ease, delay: 0.24 }}
+            className="font-[family-name:var(--font-body)] font-normal leading-relaxed max-w-[50ch] mb-10"
+            style={{ fontSize: "var(--text-base)", color: "var(--color-muted-hm)" }}
+          >
+            Full-stack developer since Dec 2022. Currently building AI-powered
+            platforms that turn natural language into production software —
+            no manual coding required.
+          </motion.p>
+
+          <motion.div
+            variants={base} initial="hidden" animate="visible"
+            transition={{ duration: 0.52, ease, delay: 0.32 }}
+            className="flex items-center gap-6 flex-wrap mb-12"
+          >
+            <a
+              href="#projects"
+              className="inline-flex items-center gap-2 px-5 py-2.5 font-[family-name:var(--font-body)] font-semibold text-[var(--text-sm)] tracking-wide"
+              style={{
+                backgroundColor: "var(--color-ink)",
+                color: "var(--color-paper)",
+                border: "1px solid var(--color-ink)",
+                borderRadius: "var(--radius-sm)",
+                transition: `background-color var(--dur-short) var(--ease-out), transform var(--dur-micro) var(--ease-out)`,
+              }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.backgroundColor = "var(--color-ink-2)";
+                el.style.transform = "translateY(-1px)";
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.backgroundColor = "var(--color-ink)";
+                el.style.transform = "translateY(0)";
+              }}
+            >
+              View work ↓
+            </a>
+            <a
+              href="#contact"
+              className="font-[family-name:var(--font-body)] font-medium text-[var(--text-sm)]"
+              style={{
+                color: "var(--color-ink-2)",
+                textDecoration: "underline",
+                textDecorationColor: "var(--color-rule)",
+                textUnderlineOffset: "4px",
+                transition: `color var(--dur-short) var(--ease-out)`,
+              }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.color = "var(--color-coral)";
+                el.style.textDecorationColor = "var(--color-coral)";
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.color = "var(--color-ink-2)";
+                el.style.textDecorationColor = "var(--color-rule)";
+              }}
+            >
+              Let&apos;s talk →
+            </a>
+          </motion.div>
+
+          {/* Stat strip */}
+          <motion.div
+            variants={base} initial="hidden" animate="visible"
+            transition={{ duration: 0.52, ease, delay: 0.40 }}
+            className="flex gap-8 pt-6"
+            style={{ borderTop: "1px solid var(--color-rule)" }}
+          >
+            {[
+              { value: "3.5", label: "Years exp" },
+              { value: "3", label: "Products" },
+              { value: "∞", label: "Curiosity" },
+            ].map(({ value, label }) => (
+              <div key={label}>
+                <div
+                  className="font-[family-name:var(--font-display)] font-semibold italic leading-none mb-1"
+                  style={{ fontSize: "var(--text-2xl)", color: "var(--color-ink)", fontVariantNumeric: "tabular-nums" }}
+                >
+                  {value}
+                </div>
+                <div
+                  className="font-[family-name:var(--font-mono)] text-[var(--text-xs)] tracking-[0.14em] uppercase"
+                  style={{ color: "var(--color-muted-hm)" }}
+                >
+                  {label}
+                </div>
+              </div>
+            ))}
+          </motion.div>
         </div>
 
-        {/* Profile photo */}
+        {/* Right — photo */}
         <motion.div
-          variants={fadeInUp}
+          initial={{ opacity: 0, x: 16 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.64, ease, delay: 0.18 }}
           className="flex justify-center lg:justify-end"
         >
-          <div className="relative w-[320px] h-[320px] lg:w-[440px] lg:h-[440px]">
-            <div className="absolute -bottom-4 -right-4 w-20 h-20 rounded-full bg-coral/15 pointer-events-none" />
-            <div className="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-teal/20 pointer-events-none" />
-            <div className="w-full h-full rounded-full overflow-hidden ring-1 ring-neutral-200 bg-paper">
+          <div
+            className="relative"
+            style={{ width: "clamp(260px, 36vw, 400px)", aspectRatio: "1 / 1" }}
+          >
+            <div
+              className="absolute -top-3 -left-3 w-6 h-6"
+              style={{ backgroundColor: "var(--color-coral)", borderRadius: "var(--radius-sm)" }}
+            />
+            <div
+              className="absolute -bottom-3 -right-3 w-3 h-3"
+              style={{ backgroundColor: "var(--color-ink)", borderRadius: "var(--radius-sm)" }}
+            />
+            <div
+              className="w-full h-full overflow-hidden"
+              style={{ borderRadius: "var(--radius-lg)", border: "1px solid var(--color-rule)" }}
+            >
               <Image
                 src="/profile.png"
                 alt="Syed Osman"
-                width={420}
-                height={420}
-                className="object-cover object-top w-full h-full scale-110"
+                width={400}
+                height={400}
+                className="object-cover object-top w-full h-full scale-105"
                 priority
+                fetchPriority="high"
               />
             </div>
           </div>
         </motion.div>
-      </motion.div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <span className="text-[10px] tracking-[0.3em] uppercase text-neutral-300">scroll</span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-          className="w-[1px] h-6 bg-gradient-to-b from-neutral-300 to-transparent"
-        />
-      </motion.div>
+      </div>
     </section>
   );
 }
