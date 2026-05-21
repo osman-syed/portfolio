@@ -2,7 +2,7 @@
 
 const EMAIL = "syed.osman@yottatechports.com";
 const GITHUB_URL = "https://github.com/osmansyed";
-const LINKEDIN_URL = "https://linkedin.com/in/osmansyed";
+const LINKEDIN_URL = "https://www.linkedin.com/in/osman-syed9/";
 
 export default function Contact() {
   return (
@@ -16,7 +16,7 @@ export default function Contact() {
         {/* Statement — Ft5 pattern */}
         <div className="mb-16" style={{ borderBottom: "1px solid var(--color-dark-rule)", paddingBottom: "var(--space-2xl)" }}>
           <h2
-            className="font-[family-name:var(--font-display)] font-semibold italic leading-[1.04] tracking-[-0.01em]"
+            className="font-[family-name:var(--font-display)] font-bold leading-[1.04] tracking-[-0.01em]"
             style={{ fontSize: "var(--text-display)", color: "var(--color-dark-ink)" }}
           >
             Let&apos;s build<br />
@@ -95,7 +95,7 @@ export default function Contact() {
           style={{ borderTop: "1px solid var(--color-dark-rule)" }}
         >
           <span
-            className="font-[family-name:var(--font-display)] italic font-semibold"
+            className="font-[family-name:var(--font-display)] font-bold uppercase tracking-[0.08em]"
             style={{ fontSize: "var(--text-lg)", color: "var(--color-dark-muted)" }}
           >
             SO.
