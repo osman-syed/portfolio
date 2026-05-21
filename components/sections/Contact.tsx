@@ -1,7 +1,7 @@
 "use client";
 
 const EMAIL = "syed.osman@yottatechports.com";
-const GITHUB_URL = "https://github.com/osmansyed";
+const GITHUB_URL = "https://github.com/osman-syed";
 const LINKEDIN_URL = "https://www.linkedin.com/in/osman-syed9/";
 
 export default function Contact() {
